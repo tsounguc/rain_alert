@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import requests
+MY_LAT = 38.907192  # Your latitude
+MY_LONG = -77.036873  # Your longitude
+api_key = 'ac6d28d37e9150d517b296cb947da78d'
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+parameters = {
+    "lat": MY_LAT,
+    "lon": MY_LONG,
+    "appid": api_key,
+}
 
+response = requests.get(url="https://api.openweathermap.org/data/2.5/forecast/hourly", params=parameters)
+print(response.status_code)
+response.raise_for_status()
+data = response.json()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+print(data)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
